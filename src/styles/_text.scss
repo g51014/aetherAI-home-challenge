@@ -1,0 +1,67 @@
+.cg-font {
+  @include cg-font(map-get($font-level, "md"), inherit, normal);
+  &-black {
+    color: $midnight !important;
+  }
+  &-white {
+    color: $white !important;
+  }
+  &-gray-blue {
+    color: $gray-blue !important;
+  }
+  &-link-water {
+    color: $link-water !important;
+  }
+  &-dark-gray-blue {
+    color: $dark-gray-blue !important;
+  }
+  &-green {
+    color: $water-grass !important;
+  }
+  &-rose {
+    color: $rose !important;
+  }
+  &-yellow {
+    color: $chrome-yellow !important;
+  }
+  &-bold {
+    font-weight: bold !important;
+  }
+  &-justify {
+    text-align: justify !important;
+  }
+  &-center {
+    text-align: center !important;
+  }
+  &-right {
+    text-align: right !important;
+  }
+  &-no-wrap {
+    white-space: nowrap !important;
+  }
+  &-pre-line {
+    white-space: pre-line !important;
+  }
+  @each $key, $value in $font-level {
+    &-#{$key} {
+      font-size: $value !important;
+    }
+    &-height {
+      &-#{$key} {
+        line-height: $value !important;
+      }
+    }
+  }
+}
+
+@each $key, $value in $theme-colors {
+  .cg-font-#{$key} {
+    color: $value !important;
+  }
+  .cg-border-#{$key} {
+    border: 1px solid $value !important;
+  }
+  .cg-bg-#{$key} {
+    background-color: $value !important;
+  }
+}
