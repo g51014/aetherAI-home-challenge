@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production --aot --base-href https://g51014.github.io/aetherAI-home-challenge/",
+    "deploy": "ng build --configuration production --aot --base-href https://g51014.github.io/aetherAI-home-challenge/ && ngh",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -21,6 +22,7 @@
     "@angular/router": "^14.1.0",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.10.2",
+    "angular-cli-ghpages": "^1.0.3",
     "bootstrap": "^5.2.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.34",
