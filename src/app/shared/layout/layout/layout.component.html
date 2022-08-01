@@ -1,0 +1,10 @@
+<section #tMenu>
+  <app-menu></app-menu>
+</section>
+<main [style.width]="'calc(100% - ' + tMenu.clientWidth + 'px)'">
+  <header #tHeader class="bg-white"></header>
+  <div class="scroll-bar" [style.height]="'calc(100% - ' + tHeader.clientHeight + 'px)'">
+    <ng-content></ng-content>
+  </div>
+  <footer></footer>
+</main>

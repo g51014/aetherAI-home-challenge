@@ -3,8 +3,13 @@
 * {
   padding: 0;
   margin: 0;
+
   [required]:empty:before {
     content: "-";
+  }
+
+  [pointer] {
+    cursor: pointer;
   }
 }
 
@@ -15,7 +20,7 @@ input:focus {
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding: 0 !important;
 }
 
 h1,
@@ -24,7 +29,7 @@ p,
 label,
 ol,
 ul {
-  margin: 0;
+  margin: 0 !important;
 }
 
 //擋掉原本chrome內建的date picker
@@ -39,22 +44,26 @@ html {
 body {
   padding: 0;
   margin: 0;
-  min-width: 1024px;
   overflow-anchor: none;
   overflow: hidden;
   font-family: "SF Pro Text", Arial;
+
   em {
     cursor: pointer;
+
     &[auto] {
       cursor: auto;
     }
   }
+
   &:lang(zh-CN) {
     font-family: "SF Pro Text", Arial, "Microsoft YaHei", "微软雅黑", "PingFangSC-Regular";
   }
+
   &:lang(zh-HK) {
     font-family: "SF Pro Text", Arial, "Microsoft JhengHei", "微軟正黑體", "PingFangTC-Regular";
   }
+
   &:lang(ja) {
     font-family: YuGothic, "Hiragino Sans";
   }
@@ -64,19 +73,23 @@ button {
   user-select: none;
   font-size: map-get($font-level, "sm");
   line-height: 20px;
+
   &[placeholder],
   &[placeholder]:focus {
     color: $link-water;
     text-align: left;
   }
+
   background-color: transparent;
 }
 
 input {
+
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
     appearance: none;
   }
+
   &[type="number"] {
     -moz-appearance: textfield;
   }
@@ -84,17 +97,21 @@ input {
 
 h2 {
   line-height: 24px;
+
   &:empty {
     display: none;
   }
-  & > label {
+
+  &>label {
     margin-left: 0.75rem;
     font-size: map-get($font-level, "xs");
     color: $dark-gray-blue;
     font-weight: 400;
+
     &::before {
       content: "- ";
     }
+
     &:empty {
       display: none;
     }
@@ -106,17 +123,21 @@ h3 {
   margin-bottom: 0.5rem;
   font-size: map-get($font-level, "sm");
   color: $midnight;
+
   &:empty {
     display: none;
   }
-  & > label {
+
+  &>label {
     margin-left: 0.75rem;
     font-size: map-get($font-level, "xs");
     color: $dark-gray-blue;
     font-weight: 400;
+
     &::before {
       content: "- ";
     }
+
     &:empty {
       display: none;
     }
@@ -130,11 +151,14 @@ header[page-title] {
   flex-direction: column;
   font-size: map-get($font-level, "xl");
   line-height: 1.5rem;
-  & > span {
+
+  &>span {
     cursor: pointer;
-    & > em {
+
+    &>em {
       font-size: map-get($font-level, "md");
     }
+
     font-size: map-get($font-level, "sm");
     font-weight: bold;
     color: $dark-gray-blue;
@@ -144,4 +168,17 @@ header[page-title] {
 
 section[page-container] {
   padding: 0 4rem;
+}
+
+
+@media screen and (max-width: map-get($grid-breakpoints, "xl")) {
+  section[page-container] {
+    padding: 0 2.5rem;
+  }
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, "md")) {
+  section[page-container] {
+    padding: 0 1rem;
+  }
 }

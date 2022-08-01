@@ -1,0 +1,31 @@
+@import "variables";
+
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  height: 4rem;
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, "xxl")) {
+  :host {
+    width: map-get($container-max-widths, "xxl");
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+  :host {
+    width: map-get($container-max-widths, "xl");
+  }
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, "md")) {
+  app-menu {
+    display: none;
+  }
+}

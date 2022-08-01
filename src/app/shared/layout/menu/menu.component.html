@@ -1,0 +1,13 @@
+<ul>
+  <li class="bg-white" pointer>
+    <img src="assets/images/logo.png" alt="">
+  </li>
+  <li *ngFor="let item of this.userPages | keyvalue">
+    <input (change)="this.navigate(item.value.path!)" [checked]="this.isActivated(item.value.path!)" class="d-none"
+      type="radio" [id]="item.key">
+    <label pointer [for]="item.key">
+      <em class="icon-{{item.value.icon}}"></em>
+      {{item.value.i18n}}
+    </label>
+  </li>
+</ul>
