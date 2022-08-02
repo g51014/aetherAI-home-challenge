@@ -10,6 +10,8 @@ import { OverlayService } from '@shared/overlay/overlay.service';
 import { IUser } from '@utilities/interfaces/user.interface';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { TimeHelper } from '@utilities/helper/time-helper';
+import { User } from '@user/shared/models/user.model';
+import { UserCenterService } from '@shared/services/user-center.service';
 
 /**
  * auth
@@ -24,7 +26,8 @@ export class AuthService {
     private $user: UserService,
     private $logger: LoggerService,
     private $overlay: OverlayService,
-    private $fb: FirebaseService
+    private $fb: FirebaseService,
+    private $userCenter: UserCenterService
   ) { }
 
   get isAuth(): string | null {
@@ -96,11 +99,16 @@ export class AuthService {
     const LoadingId = this.$overlay.startLoading();
     this.$auth
       .signInWithPopup(new GoogleAuthProvider())
-      .then(({ user }) =>
-        this.initialDBData(user?.displayName!, user?.uid!, LoadingId)
-          .then(() => this.router
-            .navigateByUrl(environment.defaultUrl)
-            .then(() => this.$overlay.endLoading(LoadingId)))
+      .then(({ user }) => this.$userCenter.fetchUser(user!.uid).then(res => {
+        if (res) {
+          this.router.navigateByUrl(environment.defaultUrl).then(() => this.$overlay.endLoading(LoadingId));
+        } else {
+          this.initialDBData(user?.displayName!, user?.uid!, LoadingId)
+            .then(() => this.router
+              .navigateByUrl(environment.defaultUrl)
+              .then(() => this.$overlay.endLoading(LoadingId)));
+        }
+      })
       ).catch((error) => {
         window.alert(error);
         this.$overlay.endLoading(LoadingId);
@@ -120,7 +128,7 @@ export class AuthService {
   private initialDBData(name: string, uid: string, loadingId: string): Promise<void> {
     const initialUserData = new Promise((resolve) =>
       resolve(this.$fb.request('user')
-        .create({ uid, name, lastLoginDate: TimeHelper.today } as IUser, uid)));
+        .create(new User({ uid, name, lastLoginDate: TimeHelper.today } as IUser).getUserData(), uid)));
     return Promise.all([initialUserData])
       .then(() => this.$overlay.endLoading(loadingId));
   }
