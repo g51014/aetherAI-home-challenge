@@ -35,7 +35,7 @@ export class AddTodoDialogComponent extends BaseDialog<IAddTodoListDialog> {
     this.$feature.fireEvent<boolean>({
       action: Action.SubmitTodo,
       input: new Todo(this.form.getRawValue()).getTodoInput(),
-      user: this.params.config!.user
+      uid: this.uid
     }).then(() => this.confirm());
   }
 

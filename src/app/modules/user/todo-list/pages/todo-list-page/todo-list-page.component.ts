@@ -19,6 +19,11 @@ import {
 })
 export class TodoListPageComponent extends BaseComponent {
   get sortingType() { return SortingType; }
+  get todos(): Todo[] {
+    return this.sorting ? this.datas.sort((a, b) => this.sorting === SortingType.AscendingByCreateTime ?
+      a.createDate > b.createDate ? 1 : -1 :
+      a.createDate > b.createDate ? -1 : 1) : this.datas;
+  }
   constructor(
     $user: UserService,
     private $overlay: OverlayService,
@@ -46,15 +51,11 @@ export class TodoListPageComponent extends BaseComponent {
     })
   }
 
-  private refetch() {
+  public refetch() {
     this.$feature.fireEvent<ITodo[]>({
       action: Action.FetchTodoList,
-      user: this.user!
-    }).then(list => this.datas = (this.sorting ?
-      list.sort((a, b) => this.sorting === SortingType.AscendingByCreateTime ?
-        a.createDate > b.createDate ? 1 : -1 :
-        a.createDate > b.createDate ? -1 : 1) :
-      list).map(todo => new Todo(todo)));
+      uid: this.user!.uid
+    }).then(list => this.datas = list.map(todo => new Todo(todo)));
   }
 
 

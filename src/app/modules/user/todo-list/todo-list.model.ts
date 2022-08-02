@@ -2,11 +2,13 @@ import { User } from "@user/shared/models/user.model";
 import { EStatus } from "@utilities/enums/common.enum";
 import { TimeHelper } from "@utilities/helper/time-helper";
 import { IEvent } from "@utilities/interfaces/common.interface";
-import { ITodo } from "@utilities/interfaces/user.interface";
+import { ITodo, IUser } from "@utilities/interfaces/user.interface";
 
 export enum TodoListAction {
-  FetchTodoList,
-  SubmitTodo
+  FetchTodoList = 1,
+  SubmitTodo,
+  EditTodo,
+  DeleteTodo
 }
 
 export interface IAddTodoListDialog {
@@ -15,7 +17,7 @@ export interface IAddTodoListDialog {
 
 export interface ITodoListEvent extends IEvent<TodoListAction> {
   input?: ITodo;
-  user?: User;
+  uid?: string;
 }
 
 export enum SortingType {
