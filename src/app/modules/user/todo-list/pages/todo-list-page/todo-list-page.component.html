@@ -1,19 +1,24 @@
 <header page-title>代辦事項</header>
 <section page-container>
-  <div class="p-4">
-    <nav class="d-flex flex-row align-items- justify-content-between">
-      <app-dropdown [size]='this.sizes.Small'>
-        <p placeholder>
-          {{ this.sorting || '排序方式' }}
-        </p>
-        <button menu class="text-nowrap" (click)="this.sorting = this.sortingType.DescendingByCreateTime">
-          {{this.sortingType.DescendingByCreateTime}}
-        </button>
-        <button menu class="text-nowrap" (click)="this.sorting = this.sortingType.AscendingByCreateTime">
-          {{this.sortingType.AscendingByCreateTime}}
-        </button>
-      </app-dropdown>
-      <app-button add (OnClick)="this.toggleAddTodoDialog()">新增</app-button>
+  <div class="p-4 pt-0">
+    <nav class="d-flex flex-md-row flex-column align-items-top justify-content-between">
+      <nav class="d-flex flex-md-row flex-column align-items-center flex-wrap">
+        <app-search-input class="d-block me-md-4 me-0 mt-4" [debounceTime]="300" [placeholder]="'請輸入標題'"
+          (OnChange)="this.filter = $event">
+        </app-search-input>
+        <app-dropdown class="d-block mt-4" [fullWidth]=" true">
+          <p placeholder>
+            {{ this.sorting || '排序方式' }}
+          </p>
+          <button menu class="text-nowrap" (click)="this.sorting = this.sortingType.DescendingByCreateTime">
+            {{this.sortingType.DescendingByCreateTime}}
+          </button>
+          <button menu class="text-nowrap" (click)="this.sorting = this.sortingType.AscendingByCreateTime">
+            {{this.sortingType.AscendingByCreateTime}}
+          </button>
+        </app-dropdown>
+      </nav>
+      <app-button class="d-block mt-4" add (OnClick)="this.toggleAddTodoDialog()">新增</app-button>
     </nav>
     <ul *ngIf="this.datas.length > 0; else tEmpty;" class="mt-3">
       <li *ngFor="let todo of this.todos">

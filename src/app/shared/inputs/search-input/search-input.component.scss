@@ -1,0 +1,113 @@
+@import "variables";
+@import "mixins";
+
+:host[hide-search] {
+  em.icon-search1 {
+    display: none;
+  }
+}
+
+.gray-blue {
+  color: $gray-blue !important;
+}
+
+.SearchInput {
+  width: 100%;
+  user-select: none;
+
+  &__Input {
+    position: relative;
+    width: 100%;
+    & > em {
+      position: absolute;
+      right: 1rem;
+      top: 0.625rem;
+      font-size: map-get($font-level, "lgx");
+      z-index: map-get($layout-level, "cover");
+      cursor: pointer;
+      color: $midnight;
+    }
+
+    & > input {
+      width: 100%;
+      padding-right: 2.25rem;
+    }
+
+    &--alert {
+      & > input {
+        border-color: $danger;
+        & > :focus {
+          border-color: $danger;
+        }
+      }
+    }
+  }
+
+  &__Menu {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    @include dropdown-shadow();
+    width: 100%;
+    z-index: map-get($layout-level, "canvus");
+    &::ng-deep {
+      ul {
+        max-height: 10rem;
+        width: 100%;
+        @include scroll();
+        li {
+          width: 100%;
+          @include cg-outrange-hidden();
+          cursor: pointer;
+          padding: 0 1rem;
+          height: 2.5rem;
+          font-size: map-get($font-level, "sm");
+          line-height: 2.5rem;
+          &:hover {
+            color: $primary;
+            background-color: $gainsboro;
+          }
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $light-gray;
+        }
+      }
+
+      .group {
+        max-height: 15rem;
+        @include scroll();
+        h2 {
+          color: $primary;
+          font-size: map-get($font-level, "sm");
+          padding: 0.8rem 1rem;
+          margin-bottom: 0;
+        }
+
+        & > ul {
+          max-height: none;
+          li {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 1rem;
+            p {
+              color: $midnight;
+              font-size: map-get($font-level, "sm");
+              line-height: 1.5rem;
+              @include cg-outrange-hidden();
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      .no-result {
+        &:hover {
+          color: $midnight !important;
+          background-color: $white !important;
+          cursor: auto;
+        }
+      }
+    }
+  }
+}

@@ -20,9 +20,10 @@ import {
 export class TodoListPageComponent extends BaseComponent {
   get sortingType() { return SortingType; }
   get todos(): Todo[] {
-    return this.sorting ? this.datas.sort((a, b) => this.sorting === SortingType.AscendingByCreateTime ?
+    const Datas = this.filter ? this.datas.filter(({ title }) => title.includes(this.filter!)) : this.datas;
+    return this.sorting ? Datas.sort((a, b) => this.sorting === SortingType.AscendingByCreateTime ?
       a.createDate > b.createDate ? 1 : -1 :
-      a.createDate > b.createDate ? -1 : 1) : this.datas;
+      a.createDate > b.createDate ? -1 : 1) : Datas;
   }
   constructor(
     $user: UserService,
@@ -33,6 +34,7 @@ export class TodoListPageComponent extends BaseComponent {
   }
 
   public sorting?: SortingType;
+  public filter?: string;
   public datas: Todo[] = [];
 
   protected override onInit(): void {

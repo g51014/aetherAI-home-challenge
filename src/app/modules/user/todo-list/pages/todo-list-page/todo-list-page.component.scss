@@ -11,3 +11,13 @@ li {
     margin-bottom: 1.5rem;
   }
 }
+
+@media screen and (max-width: map-get($grid-breakpoints, "md")) {
+  app-search-input {
+    width: 100%;
+  }
+
+  app-dropdown {
+    width: 100%;
+  }
+}

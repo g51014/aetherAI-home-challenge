@@ -1,0 +1,16 @@
+<div class="SearchInput">
+  <h3 *ngIf="this.title">{{this.title}}</h3>
+  <div class="SearchInput__Input" [class.SearchInput__Input--alert]="this.alert" #tDropdown>
+    <input [id]="this.id" [disabled]="!!this.selected" (blur)="this.onBlur()" (click)="this.expand(tDropdown)"
+      [(ngModel)]="this.keyword" type="text" class="form-control" [placeholder]="this.placeholder">
+    <em *ngIf="this.isShowSearch; else tSelectItem" class="icon-search1"></em>
+    <ng-template #tSelectItem>
+      <em (click)="this.clear($event)" class="icon-delete gray-blue"></em>
+    </ng-template>
+    <div class="SearchInput__Menu" *ngIf="this.isOpen  && this.filterMode">
+      <ng-content select=[dropdown-menu]></ng-content>
+    </div>
+    <ng-content *ngIf="this.alert" select="[alert]"></ng-content>
+    <ng-content select=[hint]></ng-content>
+  </div>
+</div>
