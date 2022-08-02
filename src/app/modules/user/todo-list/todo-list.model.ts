@@ -1,4 +1,5 @@
 import { User } from "@user/shared/models/user.model";
+import { TimeHelper } from "@utilities/helper/time-helper";
 import { IEvent } from "@utilities/interfaces/common.interface";
 import { ITodo } from "@utilities/interfaces/user.interface";
 
@@ -29,7 +30,7 @@ export class Todo implements ITodo {
   public id!: string;
   public title!: string;
   public completed!: boolean;
-  public createDate!: Date;
+  public createDate!: string;
   public description?: string;
 
   public getTodoInput(): ITodo {
@@ -37,7 +38,7 @@ export class Todo implements ITodo {
       id: this.id,
       title: this.title,
       completed: this.completed || false,
-      createDate: this.createDate || new Date(),
+      createDate: this.createDate || TimeHelper.currentDateTime,
       description: this.description || ''
     });
   }

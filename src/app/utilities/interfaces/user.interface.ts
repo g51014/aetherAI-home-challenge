@@ -12,6 +12,7 @@ export interface ITodo {
   id: string;
   completed: boolean;
   description?: string;
-  createDate: Date;
+  /**YYYY-MM-DDTHH:mm:ss  */
+  createDate: string;
   title: string;
 }

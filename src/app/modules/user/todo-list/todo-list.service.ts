@@ -28,8 +28,7 @@ export class TodoListService extends FeatureService<Event, Action> {
   }: Event): Promise<any> {
     return new Promise(resolve => {
       switch (action) {
-        case Action.FetchTodoList:
-          break;
+        case Action.FetchTodoList: this.$userCenter.fetchUser(user!.uid).then(({ todoList }) => resolve(todoList)); break;
         case Action.SubmitTodo:
           const UserInfo: IUser = user!.getUserData();
           UserInfo.todoList!.push(input!);

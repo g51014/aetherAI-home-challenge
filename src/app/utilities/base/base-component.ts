@@ -26,6 +26,7 @@ export class BaseComponent extends UnSubOnDestroy
 
   protected user?: User;
   private $user?: UserService;
+  private isUserFirstChanged = true;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.onChanges(changes);
@@ -35,12 +36,16 @@ export class BaseComponent extends UnSubOnDestroy
     if (this.$user) {
       this.$user.user$.pipe(takeUntil(this.onDestroy$)).subscribe(user => {
         this.user = user as User;
-        this.onInit();
+        if (!!user && this.isUserFirstChanged) {
+          this.onInit();
+          this.isUserFirstChanged = false;
+        }
       });
     } else {
       this.onInit();
     }
   }
+
   ngAfterContentInit(): void {
     this.afterContentInit();
   }
