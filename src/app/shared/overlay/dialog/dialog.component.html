@@ -1,8 +1,6 @@
 <header>
   <ng-content select="[title]"></ng-content>
-  <em (click)="this.close.emit()" class="material-icons">
-    clear
-  </em>
+  <em (click)="this.close.emit()" class="icon-reject"></em>
 </header>
 <section>
   <ng-content></ng-content>

@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from './layout/layout.module';
@@ -13,14 +14,18 @@ import { GeneralModule } from './general/general.module';
   imports: [
     CommonModule,
     LayoutModule,
-    OverlayModule
+    OverlayModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     LayoutModule,
     OverlayModule,
     DropdownModule,
     ButtonsModule,
-    GeneralModule
+    GeneralModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

@@ -6,7 +6,7 @@ import { DurationInputArg1, DurationInputArg2, unitOfTime } from 'moment';
 export class TimeHelper {
 
   static get currentDateTime() {
-    return moment(new Date()).format('YYYY-MM-DDTHH:mm');
+    return moment(new Date()).format('YYYY-MM-DDTHH:mm:ss');
   }
 
   static get today() {

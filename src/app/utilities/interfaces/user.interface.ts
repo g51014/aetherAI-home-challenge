@@ -4,4 +4,14 @@ export interface IUser {
   name: string;
   /**最後登入時間 */
   lastLoginDate: string;
+  /**代辦清單 */
+  todoList?: ITodo[];
+}
+
+export interface ITodo {
+  id: string;
+  completed: boolean;
+  description?: string;
+  createDate: Date;
+  title: string;
 }

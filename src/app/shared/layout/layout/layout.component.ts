@@ -18,7 +18,7 @@ export class LayoutComponent extends BaseComponent {
   }
 
   protected override onInit(): void {
-    console.log(this.user);
+
   }
 
 }

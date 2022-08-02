@@ -1,0 +1,18 @@
+@import "variables";
+
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 80px;
+  max-height: 140px;
+  font-size: map-get($font-level, "xs");
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.2);
+    font-size: map-get($font-level, "xs");
+  }
+}
+
+footer {
+  height: 4rem;
+}

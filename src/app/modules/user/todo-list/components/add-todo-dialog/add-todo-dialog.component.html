@@ -1,0 +1,12 @@
+<app-dialog (close)="this.close()">
+  <h2 title>新增代辦事項</h2>
+  <form [formGroup]="this.form">
+    <h3>標題</h3>
+    <input formControlName="title" class="form-control" type="text">
+    <h3 class="mt-4">敘述</h3>
+    <textarea class="form-control" formControlName="description" (input)="this.autoResized($event.target)"></textarea>
+  </form>
+  <footer footer class="d-flex flex-row-reverse align-items-center px-4 bg-light">
+    <app-button (OnClick)="this.submit()" [disabled]="this.form.invalid" [size]="this.sizes.Small">送出</app-button>
+  </footer>
+</app-dialog>

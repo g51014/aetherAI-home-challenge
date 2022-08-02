@@ -4,7 +4,7 @@ import { ESize } from "@utilities/enums/common.enum";
 import { IOverlay } from "@utilities/interfaces/overlay.interface";
 import { BaseComponent } from "@utilities/base/base-component";
 
-export class BaseDialog<T> extends BaseComponent {
+export class BaseDialog<T = any> extends BaseComponent {
   constructor(
     protected $overlay: OverlayService,
     protected dialog: DialogComponent

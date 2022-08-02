@@ -1,7 +1,10 @@
-import { Todo } from '@user/todo-list/todo-list.model';
+import { IAddTodoListDialog, Todo } from '@user/todo-list/todo-list.model';
 import { Component } from '@angular/core';
 import { SortingType } from '@user/todo-list/todo-list.model';
 import { BaseComponent } from '@utilities/base/base-component';
+import { OverlayService } from '@shared/overlay/overlay.service';
+import { AddTodoDialogComponent } from '@user/todo-list/components/add-todo-dialog/add-todo-dialog.component';
+import { UserService } from '@user/shared/services/user.service';
 
 
 @Component({
@@ -12,13 +15,23 @@ import { BaseComponent } from '@utilities/base/base-component';
 export class TodoListPageComponent extends BaseComponent {
   get sortingType() { return SortingType; }
   constructor(
-
+    $user: UserService,
+    private $overlay: OverlayService
   ) {
-    super();
+    super($user);
   }
 
   public sorting?: SortingType;
   public datas: Todo[] = [];
+
+  public toggleAddTodoDialog() {
+    this.$overlay.toggleDialog<IAddTodoListDialog>(AddTodoDialogComponent, {
+      config: {
+        user: this.user!
+      },
+      size: this.sizes.Large
+    })
+  }
 
 
 }
