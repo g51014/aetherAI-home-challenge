@@ -15,9 +15,7 @@ export class UserService {
   ) { }
 
   private user = new BehaviorSubject<User | null>(null);
-  public user$ = this.user.asObservable().pipe(
-    filter(user => !!user)
-  );
+  public user$ = this.user.asObservable();
 
   /**
    * @description 生成使用者資料
@@ -25,7 +23,7 @@ export class UserService {
   public generateUser(uid: string): void {
     this.$userCenter.fetchUser(uid).then(user => {
       this.user.next(new User(user));
-      this.$logger.systemMessage(`welcome user ${uid}`);
+      this.$logger.systemMessage(`welcome user ${user.name}`);
     });
   }
 

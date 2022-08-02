@@ -3,12 +3,8 @@
 </section>
 <main [style.width]="'calc(100% - ' + tMenu.clientWidth + 'px)'">
   <header #tHeader class="bg-white d-flex flex-row-reverse align-items-center px-4 py-3">
-    <p *ngIf="this.user" class="d-flex flex-row align-items-center">
-      <em class="icon-man ms-0 me-1 cg-font-darkest"></em>
-      {{this.user.name}}
-    </p>
-    <nav *ngIf="!this.user" class="d-flex flex-row align-items-center">
-      <a (click)="this.$auth.signWithGoogle()" href="javascript:void(0)">登入</a>
+    <nav class="d-flex flex-row align-items-center">
+      <ng-template [ngTemplateOutlet]="this.user ? tUser : tLogin"></ng-template>
     </nav>
   </header>
   <div class="scroll-bar" [style.height]="'calc(100vh - ' + tHeader.clientHeight + 'px)'">
@@ -16,3 +12,16 @@
   </div>
   <footer></footer>
 </main>
+
+
+<ng-template #tLogin>
+  <a (click)="this.$auth.signWithGoogle()" href="javascript:void(0)">登入</a>
+</ng-template>
+
+<ng-template #tUser>
+  <p class="d-flex flex-row align-items-center me-2">
+    <em class="icon-man ms-0 me-1 cg-font-darkest"></em>
+    {{this.user!.name}}
+  </p>
+  <a (click)="this.$auth.logout()" href="javascript:void(0)">登出</a>
+</ng-template>

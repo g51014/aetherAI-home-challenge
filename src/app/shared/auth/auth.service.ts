@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { UserService } from '@user/shared/services/user.service';
-import { filter, tap } from 'rxjs/operators';
+import { debounceTime, filter, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoggerService } from '@shared/services/logger.service';
 import { OverlayService } from '@shared/overlay/overlay.service';
@@ -32,6 +32,7 @@ export class AuthService {
   }
 
   public isAuth$ = this.$auth.authState.pipe(
+    debounceTime(100),
     tap((res) => {
       if (!res?.uid) {
         this.router
@@ -107,7 +108,9 @@ export class AuthService {
   }
 
   public logout(): void {
+    this.$auth.signOut();
     this.$user.resetUser();
+    this.router.navigateByUrl('landing');
   }
 
 
