@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "aetherai-home-challenge": {
+      "hosting": {
+        "aetherAI-home-challenge": [
+          "aetherai-home-challenge"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "aetherai-home-challenge"
+  }
+}

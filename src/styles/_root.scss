@@ -175,10 +175,20 @@ section[page-container] {
   section[page-container] {
     padding: 0 2.5rem;
   }
+
+  header[page-title] {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
 
 @media screen and (max-width: map-get($grid-breakpoints, "md")) {
   section[page-container] {
     padding: 0 1rem;
+  }
+
+  header[page-title] {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

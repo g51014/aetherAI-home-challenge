@@ -125,6 +125,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "aetherAI-home-challenge:build:production",
+            "firebaseProject": "aetherai-home-challenge",
+            "firebaseHostingSite": "aetherai-home-challenge"
+          }
         }
       }
     }

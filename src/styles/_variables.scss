@@ -68,6 +68,8 @@ $theme-colors: (
   lightest: $light-gray,
 );
 
+$positions: "t", "r", "b", "l";
+
 // bootstraps
 $body-bg: $background-color;
 $body-color: $midnight;

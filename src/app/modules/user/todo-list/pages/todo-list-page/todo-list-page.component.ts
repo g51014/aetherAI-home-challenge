@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '@shared/services/firebase.service';
+
 
 @Component({
   selector: 'app-todo-list-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private $fb: FirebaseService
+  ) { }
 
   ngOnInit(): void {
+
   }
 
 }
