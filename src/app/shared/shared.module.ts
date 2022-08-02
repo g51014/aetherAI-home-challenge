@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from './layout/layout.module';
 import { OverlayModule } from './overlay/overlay.module';
+import { DropdownModule } from './dropdown/dropdown.module';
+import { ButtonsModule } from './buttons/buttons.module';
+import { GeneralModule } from './general/general.module';
 
 
 
@@ -14,7 +17,10 @@ import { OverlayModule } from './overlay/overlay.module';
   ],
   exports: [
     LayoutModule,
-    OverlayModule
+    OverlayModule,
+    DropdownModule,
+    ButtonsModule,
+    GeneralModule
   ]
 })
 export class SharedModule { }

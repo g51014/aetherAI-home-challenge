@@ -1,4 +1,28 @@
 <header page-title>代辦事項</header>
 <section page-container>
-  <p>todo-list-page works!</p>
+  <div class="p-4">
+    <nav class="d-flex flex-row align-items- justify-content-between">
+      <app-dropdown [size]='this.sizes.Small'>
+        <p placeholder>
+          {{ this.sorting || '排序方式' }}
+        </p>
+        <button menu class="text-nowrap" (click)="this.sorting = this.sortingType.DescendingByCreateTime">
+          {{this.sortingType.DescendingByCreateTime}}
+        </button>
+        <button menu class="text-nowrap" (click)="this.sorting = this.sortingType.AscendingByCreateTime">
+          {{this.sortingType.AscendingByCreateTime}}
+        </button>
+      </app-dropdown>
+      <app-button>新增</app-button>
+    </nav>
+    <ul *ngIf="this.datas.length > 0; else tEmpty;" class="mt-3">
+      <li *ngFor="let todo of this.datas">
+        <app-todo-card></app-todo-card>
+      </li>
+    </ul>
+  </div>
 </section>
+
+<ng-template #tEmpty>
+  <app-empty></app-empty>
+</ng-template>

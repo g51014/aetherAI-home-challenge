@@ -1,0 +1,10 @@
+<div [class.w-100]="this.fullWidth !== undefined" class="Dropdown {{this.size}}" [class.Dropdown--alert]="this.alert">
+  <button #tDropdown [disabled]="this.disabled !== undefined && this.disabled !== false"
+    [class.h-auto]="this.autoHeight !== undefined"
+    (click)="this.isOpen ? this.close(tDropdown) : this.expand(tDropdown)">
+    <ng-content select="[placeholder]"></ng-content>
+  </button>
+  <div #tmenu [ngStyle]='{"right": this.isRight ? "0px" : ""}' *ngIf="this.isOpen" class="Dropdown__Menu scroll-bar">
+    <ng-content select="[menu]"></ng-content>
+  </div>
+</div>

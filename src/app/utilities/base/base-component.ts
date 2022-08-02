@@ -10,11 +10,14 @@ import {
 import { User } from "@user/shared/models/user.model";
 import { UserService } from "@user/shared/services/user.service";
 import { UnSubOnDestroy } from "@utilities/abstract/unsubondestroy.abstract";
+import { ESize } from "@utilities/enums/common.enum";
 import { takeUntil } from "rxjs";
 
 @Directive()
 export class BaseComponent extends UnSubOnDestroy
   implements OnChanges, OnInit, AfterContentInit, AfterViewInit {
+
+  get sizes(): typeof ESize { return ESize; }
 
   constructor(...args: any[]) {
     super();

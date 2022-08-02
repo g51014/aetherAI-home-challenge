@@ -1,0 +1,5 @@
+<button [type]="this.type" (click)="this.onClick($event)" [class.w-100]="this.fullWidth !== undefined"
+  [disabled]="this.disabled !== undefined && this.disabled !== false" class="Button Button--{{this.size}}"
+  [class.Button--white]="this.white !== undefined" [class.Button--gray]="this.gray !== undefined">
+  <ng-content></ng-content>
+</button>

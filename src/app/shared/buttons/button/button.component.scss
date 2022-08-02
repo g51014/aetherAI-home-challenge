@@ -1,0 +1,105 @@
+@import "mixins";
+
+@each $key, $value in $icons {
+  :host[#{$key}] {
+    button {
+      &::before {
+        @include icon($value, $white);
+      }
+    }
+  }
+}
+
+:host {
+  display: inline-block;
+}
+
+.Button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: $primary;
+  color: $white;
+  border: none;
+  border-radius: 3px;
+  white-space: nowrap;
+  &:empty {
+    display: none;
+  }
+
+  &:hover {
+    background-color: $dark-aqua-green;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: $link-water;
+    cursor: not-allowed;
+  }
+
+  &::before {
+    margin-right: 0.5rem;
+  }
+
+  &--lg {
+    padding: 0 3.5rem;
+    font-size: map-get($font-level, "md");
+    height: 3rem;
+  }
+
+  &--md {
+    font-size: map-get($font-level, "sm");
+    height: 2.5rem;
+    padding: 0 1rem;
+  }
+
+  &--sm {
+    font-size: map-get($font-level, "sm");
+    height: 2rem;
+    padding: 0 1rem;
+  }
+
+  &--white {
+    border: 1px solid $primary;
+    color: $primary;
+    background-color: $white;
+    &:hover {
+      background-color: $white;
+      border-color: $dark-aqua-green;
+      color: $dark-aqua-green;
+    }
+    &:disabled {
+      background-color: $white;
+      border-color: $link-water;
+      color: $link-water;
+      cursor: not-allowed;
+    }
+    &::before {
+      color: $primary !important;
+    }
+  }
+
+  &--gray {
+    border: 1px solid $link-water;
+    background-color: $white;
+    color: $dark-gray-blue;
+    &:hover {
+      background-color: $white;
+      border-color: $link-water;
+      color: $dark-gray-blue;
+    }
+    &:disabled {
+      background-color: $white;
+      border-color: $link-water;
+      color: $link-water;
+      cursor: not-allowed;
+    }
+    &::before {
+      color: $dark-gray-blue !important;
+    }
+  }
+}

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '@shared/services/firebase.service';
+import { Todo } from '@user/todo-list/todo-list.model';
+import { Component } from '@angular/core';
+import { SortingType } from '@user/todo-list/todo-list.model';
+import { BaseComponent } from '@utilities/base/base-component';
 
 
 @Component({
@@ -7,14 +9,16 @@ import { FirebaseService } from '@shared/services/firebase.service';
   templateUrl: './todo-list-page.component.html',
   styleUrls: ['./todo-list-page.component.scss']
 })
-export class TodoListPageComponent implements OnInit {
-
+export class TodoListPageComponent extends BaseComponent {
+  get sortingType() { return SortingType; }
   constructor(
-    private $fb: FirebaseService
-  ) { }
 
-  ngOnInit(): void {
-
+  ) {
+    super();
   }
+
+  public sorting?: SortingType;
+  public datas: Todo[] = [];
+
 
 }

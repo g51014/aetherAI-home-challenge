@@ -1,0 +1,12 @@
+@import 'variables';
+@import 'mixins';
+
+.Empty {
+  @include flex-center;
+  flex-direction: column;
+  padding: 3rem;
+  img {
+    height: 8.54rem;
+    width: 8.54rem;
+  }
+}
