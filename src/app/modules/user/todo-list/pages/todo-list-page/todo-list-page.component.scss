@@ -5,3 +5,9 @@ section {
     @include cg-card;
   }
 }
+
+li {
+  &:not(:last-of-type) {
+    margin-bottom: 1.5rem;
+  }
+}

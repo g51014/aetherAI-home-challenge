@@ -1,0 +1,38 @@
+@import "variables";
+@import "mixins";
+
+span {
+  white-space: nowrap;
+}
+
+.dark.active {
+  @include statusBtn($white, $water-grass);
+}
+
+.dark.closed {
+  @include statusBtn($white, $chrome-yellow);
+}
+
+.dark.canceled {
+  @include statusBtn($white, $dark-gray-blue);
+}
+
+.dark.wait {
+  @include statusBtn($white, $coffee);
+}
+
+.light.active {
+  @include statusBtn($water-grass, $light-green);
+}
+
+.light.closed {
+  @include statusBtn($chrome-yellow, $light-yellow);
+}
+
+.light.canceled {
+  @include statusBtn($dark-gray-blue, $gainsboro);
+}
+
+.light.wait {
+  @include statusBtn($coffee, $light-brown);
+}

@@ -1,0 +1,19 @@
+@import "colors";
+@import "mixins";
+
+:host {
+  display: block;
+  @include cg-card;
+}
+
+header {
+  box-shadow: inset 0 -1px 0 0 $light-gray;
+}
+
+a {
+  text-decoration: none;
+
+  &:not(:last-of-type) {
+    margin-right: 1.5rem;
+  }
+}

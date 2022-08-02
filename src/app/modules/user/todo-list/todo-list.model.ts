@@ -1,4 +1,5 @@
 import { User } from "@user/shared/models/user.model";
+import { EStatus } from "@utilities/enums/common.enum";
 import { TimeHelper } from "@utilities/helper/time-helper";
 import { IEvent } from "@utilities/interfaces/common.interface";
 import { ITodo } from "@utilities/interfaces/user.interface";
@@ -23,6 +24,15 @@ export enum SortingType {
 }
 
 export class Todo implements ITodo {
+
+  get status(): EStatus {
+    return this.completed ? EStatus.Closed : EStatus.Active;
+  }
+
+  get statusText(): string {
+    return this.completed ? '已完成' : '未完成';
+  }
+
   constructor(data: ITodo) {
     Object.assign(this, data);
   }
