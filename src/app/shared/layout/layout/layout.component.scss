@@ -13,6 +13,43 @@ header {
   position: relative;
   z-index: map-get($layout-level, "canvus");
   box-shadow: 12px 1px 9px 0 rgba(63, 63, 68, 0.15);
+
+  input {
+    &:checked {
+      &+label {
+        &+section {
+          display: block;
+
+          &+app-menu {
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+  }
+
+  label {
+    &+section {
+      display: none;
+      position: fixed;
+      z-index: map-get($layout-level, "cover");
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      width: 100vw;
+      height: 100vh;
+
+      &+app-menu {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: map-get($layout-level, "important");
+        transition: 0.5s;
+        transform: translateX(-100%);
+      }
+    }
+  }
 }
 
 a {
@@ -35,8 +72,4 @@ a {
   }
 }
 
-@media screen and (max-width: map-get($grid-breakpoints, "md")) {
-  app-menu {
-    display: none;
-  }
-}
+@media screen and (max-width: map-get($grid-breakpoints, "md")) {}
