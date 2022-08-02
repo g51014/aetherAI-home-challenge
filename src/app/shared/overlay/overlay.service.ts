@@ -1,8 +1,9 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IDialog, ILoading, IOverlay } from '@utilities/interfaces/overlay.interface';
-import { map, reduce, scan, tap, filter } from 'rxjs/operators';
+import {  scan,  filter } from 'rxjs/operators';
 import { EAction, ESize } from '@utilities/enums/common.enum';
+import { LoggerService } from '@shared/services/logger.service';
 
 interface DialogEvent {
   action: EAction.Add | EAction.Delete | EAction.Clear;
@@ -12,7 +13,9 @@ interface DialogEvent {
   providedIn: 'root',
 })
 export class OverlayService {
-  constructor( ) {
+  constructor(
+    private $logger: LoggerService
+  ) {
     this.loadingQueue$.subscribe();
   }
 
@@ -99,11 +102,15 @@ export class OverlayService {
       case EAction.Add:
         if (!dialogs.has(Dialog)) {
           dialogs.add(Dialog);
+        } else {
+          this.$logger.errorMessage(`Dialog has already exist`, Dialog.id, 'Overlay');
         }
         break;
       case EAction.Delete:
         if (dialogs.has(Dialog)) {
           dialogs.delete(Dialog);
+        } else {
+          this.$logger.errorMessage(`Dialog not exist`, Dialog.id, 'Overlay');
         }
         break;
       case EAction.Clear: dialogs.clear(); break;

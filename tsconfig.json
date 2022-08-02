@@ -23,6 +23,9 @@
       "dom"
     ],
     "paths": {
+      "@user/*": [
+        "src/app/modules/user/*"
+      ],
       "@shared/*": [
         "src/app/shared/*"
       ],

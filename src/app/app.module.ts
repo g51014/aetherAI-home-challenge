@@ -7,7 +7,12 @@ import { SharedModule } from '@shared/shared.module';
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
+import { Level, NgLoggerModule } from '@nsalaun/ng-logger';
 
+let LOG_LEVEL = Level.LOG;
+if (environment.production) {
+  LOG_LEVEL = Level.ERROR;
+}
 
 @NgModule({
   declarations: [
@@ -19,7 +24,8 @@ import { environment } from 'src/environments/environment';
     NgbModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgLoggerModule.forRoot(LOG_LEVEL),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,17 @@
 <section #tMenu>
-  <app-menu></app-menu>
+  <app-menu *ngIf="this.user"></app-menu>
 </section>
 <main [style.width]="'calc(100% - ' + tMenu.clientWidth + 'px)'">
-  <header #tHeader class="bg-white"></header>
-  <div class="scroll-bar" [style.height]="'calc(100% - ' + tHeader.clientHeight + 'px)'">
+  <header #tHeader class="bg-white d-flex flex-row-reverse align-items-center px-4 py-3">
+    <p *ngIf="this.user" class="d-flex flex-row align-items-center">
+      <em class="icon-man ms-0 me-1 cg-font-darkest"></em>
+      {{this.user.name}}
+    </p>
+    <nav *ngIf="!this.user" class="d-flex flex-row align-items-center">
+      <a (click)="this.$auth.signWithGoogle()" href="javascript:void(0)">登入</a>
+    </nav>
+  </header>
+  <div class="scroll-bar" [style.height]="'calc(100vh - ' + tHeader.clientHeight + 'px)'">
     <ng-content></ng-content>
   </div>
   <footer></footer>

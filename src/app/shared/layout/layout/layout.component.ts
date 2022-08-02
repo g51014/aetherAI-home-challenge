@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '@shared/auth/auth.service';
+import { UserService } from '@user/shared/services/user.service';
+import { BaseComponent } from '@utilities/base/base-component';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent extends BaseComponent {
 
-  constructor() { }
+  constructor(
+    $user: UserService,
+    public $auth: AuthService
+  ) {
+    super($user);
+  }
 
-  ngOnInit(): void {
+  protected override onInit(): void {
+    console.log(this.user);
   }
 
 }

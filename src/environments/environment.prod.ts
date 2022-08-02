@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  defaultUrl: 'user/todo-list',
   firebase: {
     apiKey: "AIzaSyB8KU__cSwzMPAXL2uUrtjxJFsINZy5-jA",
     authDomain: "aetherai-home-challenge.firebaseapp.com",

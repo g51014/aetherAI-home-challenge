@@ -1,0 +1,19 @@
+@import "variables";
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 80%;
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+  img {
+    width: 60%;
+  }
+}

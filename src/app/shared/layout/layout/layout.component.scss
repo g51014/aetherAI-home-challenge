@@ -12,6 +12,13 @@ header {
   height: 4rem;
 }
 
+a {
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+  text-decoration:  none;
+}
+
 @media screen and (min-width: map-get($grid-breakpoints, "xxl")) {
   :host {
     width: map-get($container-max-widths, "xxl");
