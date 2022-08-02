@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DialogComponent } from '@shared/overlay/dialog/dialog.component';
 import { OverlayService } from '@shared/overlay/overlay.service';
@@ -10,6 +10,7 @@ import {
   TodoListAction as Action
 } from '@user/todo-list/todo-list.model';
 import { TimeHelper } from '@utilities/helper/time-helper';
+
 @Component({
   selector: 'app-add-todo-dialog',
   templateUrl: './add-todo-dialog.component.html',
@@ -17,6 +18,8 @@ import { TimeHelper } from '@utilities/helper/time-helper';
 })
 export class AddTodoDialogComponent extends BaseDialog<IAddTodoListDialog> {
   get uid(): string { return this.params.config!.user.uid; }
+  get todo(): Todo | undefined { return this.params.config!.todo; }
+
   constructor(
     $overlay: OverlayService, dialog: DialogComponent,
     private fb: FormBuilder,
@@ -28,13 +31,23 @@ export class AddTodoDialogComponent extends BaseDialog<IAddTodoListDialog> {
   public form: FormGroup = this.fb.group({
     id: `${this.uid}${TimeHelper.currentDateTime}`,
     title: [null, Validators.required],
-    description: [null]
+    description: [null],
+    completed: false
   });
+
+  protected override onInit(): void {
+    if (this.todo) {
+      this.initialForm(this.todo);
+    } else {
+      this.form.controls['completed'].disable();
+    }
+  }
 
   public submit() {
     this.$feature.fireEvent<boolean>({
-      action: Action.SubmitTodo,
-      input: new Todo(this.form.getRawValue()).getTodoInput(),
+      action: this.todo ? Action.EditTodo : Action.SubmitTodo,
+      input: this.todo ? { ...this.todo.getTodoInput(), ...this.form.getRawValue() } :
+        new Todo(this.form.getRawValue()).getTodoInput(),
       uid: this.uid
     }).then(() => this.confirm());
   }
@@ -46,5 +59,10 @@ export class AddTodoDialogComponent extends BaseDialog<IAddTodoListDialog> {
     if (Target.scrollHeight > 80) {
       Target.classList.add('scroll-bar');
     }
+  }
+
+  private initialForm({ id, title, description, completed }: Todo) {
+    this.form.setValue({ id, title, description, completed });
+    this.form.markAllAsTouched();
   }
 }

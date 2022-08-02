@@ -1,5 +1,9 @@
 <app-dialog (close)="this.close()">
-  <h2 title>新增代辦事項</h2>
+  <nav [formGroup]="this.form" title class="d-flex flex-row align-items-center">
+    <h2>{{this.todo ? "編輯代辦事項" : "新增代辦事項"}}</h2>
+    <app-switch-button *ngIf="this.form.controls['completed'].enabled" formControlName="completed" class="d-block ms-4">
+    </app-switch-button>
+  </nav>
   <form [formGroup]="this.form">
     <h3>標題</h3>
     <input formControlName="title" class="form-control" type="text">

@@ -1,13 +1,13 @@
 <section #tMenu>
   <app-menu *ngIf="this.user"></app-menu>
 </section>
-<main [style.width]="'calc(100% - ' + tMenu.clientWidth + 'px)'">
+<main [style.width]="'calc(100vw - ' + tMenu.clientWidth + 'px)'">
   <header #tHeader class="bg-white d-flex flex-row-reverse align-items-center px-4 py-3">
     <nav class="d-flex flex-row align-items-center">
       <ng-template [ngTemplateOutlet]="this.user ? tUser : tLogin"></ng-template>
     </nav>
   </header>
-  <div class="scroll-bar" [style.height]="'calc(100vh - ' + tHeader.clientHeight + 'px)'">
+  <div class="scroll-bar pb-4_2" [style.height]="'calc(100vh - ' + tHeader.clientHeight + 'px)'">
     <ng-content></ng-content>
   </div>
   <footer></footer>

@@ -10,13 +10,17 @@
 
 header {
   height: 4rem;
+  position: relative;
+  z-index: map-get($layout-level, "canvus");
+  box-shadow: 12px 1px 9px 0 rgba(63, 63, 68, 0.15);
 }
 
 a {
   &:not(:last-child) {
     margin-right: 0.5rem;
   }
-  text-decoration:  none;
+
+  text-decoration: none;
 }
 
 @media screen and (min-width: map-get($grid-breakpoints, "xxl")) {

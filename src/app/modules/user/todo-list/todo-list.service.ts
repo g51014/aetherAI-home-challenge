@@ -6,7 +6,6 @@ import {
 } from '@user/todo-list/todo-list.model';
 import { LoggerService } from '@shared/services/logger.service';
 import { UserCenterService } from '@shared/services/user-center.service';
-import { IUser } from '@utilities/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +31,12 @@ export class TodoListService extends FeatureService<Event, Action> {
         case Action.SubmitTodo:
           this.$userCenter.fetchUser(uid!).then(user => {
             user.todoList!.push(input!);
+            resolve(this.$userCenter.updateUserProfile(user, user.uid));
+          });
+          break;
+        case Action.EditTodo:
+          this.$userCenter.fetchUser(uid!).then(user => {
+            user.todoList = user.todoList!.map(todo => todo.id === input!.id ? input! : todo);
             resolve(this.$userCenter.updateUserProfile(user, user.uid));
           });
           break;

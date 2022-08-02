@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OverlayService } from '@shared/overlay/overlay.service';
 import { UserService } from '@user/shared/services/user.service';
-import { Todo } from '@user/todo-list/todo-list.model';
+import { IAddTodoListDialog, Todo } from '@user/todo-list/todo-list.model';
 import { TodoListService } from '@user/todo-list/todo-list.service';
 import { BaseComponent } from '@utilities/base/base-component';
 import {
   TodoListAction as Action
 } from '@user/todo-list/todo-list.model';
 import { ITodo } from '@utilities/interfaces/user.interface';
+import { AddTodoDialogComponent } from '@user/todo-list/components/add-todo-dialog/add-todo-dialog.component';
 
 @Component({
   selector: 'app-todo-card',
@@ -28,7 +29,16 @@ export class TodoCardComponent extends BaseComponent {
   }
 
   public edit() {
-
+    this.$overlay.toggleDialog<IAddTodoListDialog>(AddTodoDialogComponent, {
+      size: this.sizes.Large,
+      config: {
+        user: this.user!,
+        todo: this.todo
+      },
+      callbacks: {
+        confirm: () => this.refresh.emit()
+      }
+    })
   }
 
   public delete() {

@@ -12,7 +12,8 @@ export enum TodoListAction {
 }
 
 export interface IAddTodoListDialog {
-  user: User
+  user: User;
+  todo?: Todo;
 }
 
 export interface ITodoListEvent extends IEvent<TodoListAction> {
