@@ -44,6 +44,7 @@ export class AddTodoDialogComponent extends BaseDialog<IAddTodoListDialog> {
   }
 
   public submit() {
+    console.log(this.form.value)
     this.$feature.fireEvent<boolean>({
       action: this.todo ? Action.EditTodo : Action.SubmitTodo,
       input: this.todo ? { ...this.todo.getTodoInput(), ...this.form.getRawValue() } :

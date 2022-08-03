@@ -30,7 +30,11 @@ export class TodoCardComponent extends BaseComponent {
 
   /**敘述換行符號轉換為html標籤 */
   public formatDescriptionHtml(description?: string): string {
-    return description?.replace(/\n/g, '<br>') || '-';
+    return description ?
+      description
+        .replace(/\n/g, '<br>')
+        .replace(/\s/g, '&nbsp')
+      : '-';
   }
 
   public edit() {
