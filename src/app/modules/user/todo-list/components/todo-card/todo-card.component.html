@@ -1,11 +1,11 @@
-<header class="d-flex flex-row align-items-top justify-content-between p-4">
-  <nav class="d-flex flex-row align-items-top">
-    <h2 class="me-4">{{this.todo.title}}</h2>
+<header class="d-flex flex-row align-items-start justify-content-between p-4">
+  <nav class="d-flex flex-md-row flex-column align-items-md-start">
+    <h2 class="me-md-4 me-0 mb-md-0 mb-2">{{this.todo.title}}</h2>
     <app-status [status]="this.todo.status">
       {{this.todo.statusText}}
     </app-status>
   </nav>
-  <nav class="d-flex flex-row align-items-center">
+  <nav class="d-flex flex-row align-items-start">
     <a href="javascript:void(0)" (click)="this.edit()">編輯</a>
     <a href="javascript:void(0)" (click)="this.delete()">刪除</a>
   </nav>

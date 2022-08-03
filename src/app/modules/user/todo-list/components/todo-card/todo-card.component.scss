@@ -31,7 +31,6 @@ p {
 
 @media screen and (max-width: map-get($grid-breakpoints, "md")) {
   h2 {
-    max-width: 60px;
-    @include cg-outrange-hidden;
+    max-width: 10rem;
   }
 }
