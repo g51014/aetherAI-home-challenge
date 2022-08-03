@@ -19,11 +19,11 @@ import {
 export class TooltipDirective {
 
   @Input() position: 'top' | 'left' | 'right' | 'bottom' = 'bottom';
-  @Input() appTooltip: string;
+  @Input() appTooltip!: string;
   /**
    * @description 自訂工具樣式
    */
-  @ContentChild('tooltipTemplate') tooltipTemplateRef?: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplateRef!: TemplateRef<any>;
 
   constructor(
     private renderer: Renderer2,
@@ -35,7 +35,7 @@ export class TooltipDirective {
     Self.style.display = 'inline-table';
   }
 
-  private tooltip: Element = null;
+  private tooltip: Element | null = null;
 
   @HostListener('mouseenter') onMouseIn() {
     this.tooltipTemplateRef ? this.embedView() : this.appendToolTip();
@@ -49,7 +49,7 @@ export class TooltipDirective {
 
   private appendToolTip() {
     this.tooltip = this.renderer.createElement('label');
-    this.tooltip.innerHTML = this.appTooltip;
+    this.tooltip!.innerHTML = this.appTooltip;
     this.renderer.setStyle(this.tooltip, 'position', 'absolute');
     this.renderer.setStyle(this.tooltip, 'z-index', '2');
     this.renderer.setStyle(

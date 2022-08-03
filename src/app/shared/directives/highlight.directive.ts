@@ -18,8 +18,8 @@ export class HighlightDirective implements OnChanges {
   /**
    * @description will mark background when value is changed.
    */
-  @Input() parent: Element;
-  @Input() appHighlight;
+  @Input() parent?: Element;
+  @Input() appHighlight?: number;
 
   constructor(
     private element: ElementRef,
@@ -27,12 +27,12 @@ export class HighlightDirective implements OnChanges {
   ) { }
 
   private animation$ = timer(500);
-  private activatedAnimation: Subscription;
+  private activatedAnimation!: Subscription;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes.appHighlight.firstChange) {
-      const Previous = changes.appHighlight.previousValue;
-      const Current = changes.appHighlight.currentValue;
+    if (!changes['appHighlight'].firstChange) {
+      const Previous = changes['appHighlight'].previousValue;
+      const Current = changes['appHighlight'].currentValue;
       if (Current !== Previous) {
         if (this.activatedAnimation && !this.activatedAnimation.closed) {
           this.activatedAnimation.unsubscribe();

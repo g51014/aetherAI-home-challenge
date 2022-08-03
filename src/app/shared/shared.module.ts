@@ -7,6 +7,7 @@ import { DropdownModule } from './dropdown/dropdown.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { GeneralModule } from './general/general.module';
 import { InputsModule } from './inputs/inputs.module';
+import { DirectivesModule } from './directives/directives.module';
 
 
 
@@ -18,7 +19,8 @@ import { InputsModule } from './inputs/inputs.module';
     OverlayModule,
     FormsModule,
     ReactiveFormsModule,
-    InputsModule
+    InputsModule,
+    DirectivesModule
   ],
   exports: [
     LayoutModule,
@@ -28,7 +30,8 @@ import { InputsModule } from './inputs/inputs.module';
     GeneralModule,
     FormsModule,
     ReactiveFormsModule,
-    InputsModule
+    InputsModule,
+    DirectivesModule
   ]
 })
 export class SharedModule { }

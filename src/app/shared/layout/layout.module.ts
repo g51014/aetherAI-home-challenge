@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LandingComponent } from './landing/landing.component';
+import { DirectivesModule } from '@shared/directives/directives.module';
 
 
 
@@ -13,7 +14,8 @@ import { LandingComponent } from './landing/landing.component';
     LandingComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DirectivesModule
   ],
   exports: [
     LayoutComponent

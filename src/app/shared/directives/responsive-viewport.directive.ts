@@ -1,9 +1,9 @@
 import { ResizeObserver } from 'resize-observer';
 import { tap, takeUntil } from 'rxjs/operators';
-import { Directive, ElementRef, Renderer2, OnInit, Input, OnChanges, HostListener, Output, EventEmitter } from '@angular/core';
-import { BaseComponent } from '@utilities/bases/base-component';
+import { Directive, ElementRef, Renderer2, OnInit, Input, HostListener, Output, EventEmitter } from '@angular/core';
+import { BaseComponent } from '@utilities/base/base-component';
 import { EDevice } from '@utilities/enums/common.enum';
-import { WindowService } from '@utilities/services/window.service';
+import { WindowService } from '@shared/services/window.service';
 import { WindowHelper } from '@utilities/helper/window.helper';
 
 /**
@@ -12,7 +12,7 @@ import { WindowHelper } from '@utilities/helper/window.helper';
 @Directive({
   selector: '[appResponsiveViewport]',
 })
-export class ResponsiveViewportDirective extends BaseComponent implements OnInit {
+export class ResponsiveViewportDirective extends BaseComponent {
   @Input() responseBuffers: Element[] = [];
   @Input() breakpoints: EDevice[] = [];
   @Output() OnResize = new EventEmitter<any>();
@@ -35,7 +35,7 @@ export class ResponsiveViewportDirective extends BaseComponent implements OnInit
     }
   }
 
-  ngOnInit() {
+  protected override onInit(): void {
     this.resizeViewport();
     if (this.breakpoints.length === 0) {
       this.responseBuffers.forEach(element => this.resize$.observe(element));
@@ -60,7 +60,7 @@ export class ResponsiveViewportDirective extends BaseComponent implements OnInit
     this.OnResize.emit(this.e.nativeElement.getBoundingClientRect());
   }
 
-  public onDestroy() {
+  protected override onDestroy() {
     this.resize$.disconnect();
     this.render.removeStyle(this.e.nativeElement, 'height');
   }
