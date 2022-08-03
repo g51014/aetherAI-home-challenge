@@ -5,6 +5,6 @@ export const UserPages: Map<EUserPage, IMenuItem> = new Map([
   [EUserPage.TodoList, {
     path: `user/${EUserPage.TodoList}`,
     icon: 'listview',
-    i18n: '代辦事項'
+    i18n: '待辦事項'
   }]
 ])
