@@ -16,7 +16,7 @@
       <app-menu></app-menu>
     </ng-container>
   </header>
-  <div class="scroll-bar pb-4_2" appResponsiveViewport [responseBuffers]="[tHeader]">
+  <div #tPage class="scroll-bar pb-4_2" appResponsiveViewport [responseBuffers]="[tHeader]">
     <ng-content></ng-content>
   </div>
   <footer></footer>
