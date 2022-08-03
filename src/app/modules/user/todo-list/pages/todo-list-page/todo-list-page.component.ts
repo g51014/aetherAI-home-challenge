@@ -11,6 +11,7 @@ import {
   Todo,
   TodoListAction as Action
 } from '@user/todo-list/todo-list.model';
+import { WindowService } from '@shared/services/window.service';
 
 @Component({
   selector: 'app-todo-list-page',
@@ -28,7 +29,8 @@ export class TodoListPageComponent extends BaseComponent {
   constructor(
     $user: UserService,
     private $overlay: OverlayService,
-    private $feature: TodoListService
+    private $feature: TodoListService,
+    private $window: WindowService
   ) {
     super($user);
   }
@@ -39,6 +41,16 @@ export class TodoListPageComponent extends BaseComponent {
 
   protected override onInit(): void {
     this.refetch();
+  }
+
+  public setFilter(keyword: string) {
+    this.filter = keyword;
+    this.$window.scrollTo(0);
+  }
+
+  public setSorting(type: SortingType) {
+    this.sorting = type;
+    this.$window.scrollTo(0);
   }
 
   public toggleAddTodoDialog() {
@@ -57,7 +69,10 @@ export class TodoListPageComponent extends BaseComponent {
     this.$feature.fireEvent<ITodo[]>({
       action: Action.FetchTodoList,
       uid: this.user!.uid
-    }).then(list => this.datas = list.map(todo => new Todo(todo)));
+    }).then(list => {
+      this.datas = list.map(todo => new Todo(todo));
+      this.$window.scrollTo(0);
+    });
   }
 
 

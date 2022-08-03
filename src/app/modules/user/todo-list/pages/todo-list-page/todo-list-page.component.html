@@ -4,16 +4,16 @@
     <nav class="d-flex flex-md-row flex-column align-items-top justify-content-between">
       <nav class="d-flex flex-md-row flex-column align-items-center flex-wrap">
         <app-search-input class="d-block me-md-4 me-0 mt-4" [debounceTime]="300" [placeholder]="'請輸入標題'"
-          (OnChange)="this.filter = $event">
+          (OnChange)="this.setFilter($event)">
         </app-search-input>
         <app-dropdown class="d-block mt-4" [fullWidth]=" true">
           <p placeholder>
             {{ this.sorting || '排序方式' }}
           </p>
-          <button menu class="text-nowrap" (click)="this.sorting = this.sortingType.DescendingByCreateTime">
+          <button menu class="text-nowrap" (click)="this.setSorting(this.sortingType.DescendingByCreateTime)">
             {{this.sortingType.DescendingByCreateTime}}
           </button>
-          <button menu class="text-nowrap" (click)="this.sorting = this.sortingType.AscendingByCreateTime">
+          <button menu class="text-nowrap" (click)="this.setSorting(this.sortingType.AscendingByCreateTime)">
             {{this.sortingType.AscendingByCreateTime}}
           </button>
         </app-dropdown>
