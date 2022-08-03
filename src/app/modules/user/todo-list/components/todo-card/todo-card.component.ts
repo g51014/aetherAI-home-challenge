@@ -28,6 +28,11 @@ export class TodoCardComponent extends BaseComponent {
     super($user);
   }
 
+  /**敘述換行符號轉換為html標籤 */
+  public formatDescriptionHtml(description?: string): string {
+    return description?.replace(/\n/g, '<br>') || '-';
+  }
+
   public edit() {
     this.$overlay.toggleDialog<IAddTodoListDialog>(AddTodoDialogComponent, {
       size: this.sizes.Large,

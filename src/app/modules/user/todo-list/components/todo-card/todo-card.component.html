@@ -11,5 +11,5 @@
   </nav>
 </header>
 <section class="p-4">
-  <p required>{{this.todo.description}}</p>
+  <p [innerHtml]="this.formatDescriptionHtml(this.todo.description) | sanitize"></p>
 </section>

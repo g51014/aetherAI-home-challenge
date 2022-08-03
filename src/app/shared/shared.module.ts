@@ -8,6 +8,7 @@ import { ButtonsModule } from './buttons/buttons.module';
 import { GeneralModule } from './general/general.module';
 import { InputsModule } from './inputs/inputs.module';
 import { DirectivesModule } from './directives/directives.module';
+import { PipesModule } from './pipes/pipes.module';
 
 
 
@@ -20,7 +21,8 @@ import { DirectivesModule } from './directives/directives.module';
     FormsModule,
     ReactiveFormsModule,
     InputsModule,
-    DirectivesModule
+    DirectivesModule,
+    PipesModule
   ],
   exports: [
     LayoutModule,
@@ -31,7 +33,8 @@ import { DirectivesModule } from './directives/directives.module';
     FormsModule,
     ReactiveFormsModule,
     InputsModule,
-    DirectivesModule
+    DirectivesModule,
+    PipesModule
   ]
 })
 export class SharedModule { }
